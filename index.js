@@ -7,6 +7,7 @@ const {
   bufferToInt,
   TWO_POW256
 } = require('ethereumjs-util')
+const { blake3 } = require('hash-wasm');
 const ethHashUtil = require('./util.js')
 const xor = require('buffer-xor')
 const async = require('async')
@@ -57,22 +58,22 @@ Ethash.prototype.calcDatasetItem = function (i) {
   return keccak(mix, 512)
 }
 
-Ethash.prototype.run = function (val, nonce, fullSize) {
+Ethash.prototype.run = async function (val, nonce, fullSize) {
   fullSize = fullSize || this.fullSize
   const n = Math.floor(fullSize / ethHashUtil.params.HASH_BYTES)
   const w = Math.floor(
     ethHashUtil.params.MIX_BYTES / ethHashUtil.params.WORD_BYTES
   )
-  const s = keccak(Buffer.concat([val, ethHashUtil.bufReverse(nonce)]), 512)
+  const seed = await blake3(Buffer.concat([val, ethHashUtil.bufReverse(nonce)]), 512)
   const mixhashes = Math.floor(
     ethHashUtil.params.MIX_BYTES / ethHashUtil.params.HASH_BYTES
   )
-  var mix = Buffer.concat(Array(mixhashes).fill(s))
+  var mix = Buffer.concat(Array(mixhashes).fill(seed))
 
   var i
   for (i = 0; i < ethHashUtil.params.ACCESSES; i++) {
     var p =
-      (ethHashUtil.fnv(i ^ s.readUInt32LE(0), mix.readUInt32LE((i % w) * 4)) %
+      (ethHashUtil.fnv(i ^ seed.readUInt32LE(0), mix.readUInt32LE((i % w) * 4)) %
         Math.floor(n / mixhashes)) *
       mixhashes
     var newdata = []
@@ -97,7 +98,7 @@ Ethash.prototype.run = function (val, nonce, fullSize) {
 
   return {
     mix: cmix,
-    hash: keccak256(Buffer.concat([s, cmix]))
+    hash: await blake3(Buffer.concat([seed, cmix]))
   }
 }
 
