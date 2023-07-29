@@ -1,7 +1,7 @@
 {
-  "name": "ethashjs",
+  "name": "ethash-b3js",
   "version": "0.0.8",
-  "description": "an ethash implementation in JS",
+  "description": "an ethash-b3 implementation in JS",
   "main": "index.js",
   "directories": {
     "test": "tests"
@@ -13,19 +13,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ethereumjs/ethashjs.git"
+    "url": "https://github.com/Rethereum-blockchain/ethash-b3.git"
   },
   "keywords": [
     "ethash",
     "ethereum",
+    "rethereum",
+    "ethash-b3",
     "POW"
   ],
   "author": "mjbecze <mjbecze@gmail.com>",
   "license": "MPL-2.0",
   "bugs": {
-    "url": "https://github.com/ethereumjs/ethashjs/issues"
+    "url": "https://github.com/Rethereum-blockchain/ethash-b3/issues"
   },
-  "homepage": "https://github.com/ethereumjs/ethashjs#readme",
+  "homepage": "https://github.com/Rethereum-blockchain/ethash-b3#readme",
   "dependencies": {
     "async": "^2.1.2",
     "buffer-xor": "^2.0.1",

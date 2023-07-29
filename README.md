@@ -1,17 +1,9 @@
-<p align="center">
-  <a href="https://github.com/ethereumjs/ethereumjs-vm/tree/master/packages/ethash">
-    <img src="https://user-images.githubusercontent.com/47108/78554503-42c47000-77d9-11ea-8935-2d93981d50df.png" width="309">
-  </a>
-</p>
-
 # SYNOPSIS
 
 [![NPM Package](https://img.shields.io/npm/v/ethashjs.svg)](https://www.npmjs.org/package/ethashjs)
 [![Actions Status](https://github.com/ethereumjs/ethashjs/workflows/Build/badge.svg)](https://github.com/ethereumjs/ethashjs/actions)
 [![Coverage Status](https://img.shields.io/coveralls/ethereumjs/ethashjs.svg)](https://coveralls.io/r/ethereumjs/ethashjs)
 [![Discord][discord-badge]][discord-link]
-
-Implements [Ethash](https://github.com/ethereum/wiki/wiki/Ethash).
 
 # INSTALL
 
